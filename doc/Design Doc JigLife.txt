@@ -1,19 +1,19 @@
 Design doc JigLife
 ==================
 
+
 Algorithm of puzzle pieces
+
 The puzzle will be divided into a number of pieces the user has indicated in the options menu. Each puzzle piece will be given a number that indicates its position. For example, if a puzzle piece has the number 3, the puzzle piece with the number 2 will fit to the left of it and the puzzle piece with the number 4 will fit to the right of it. Puzzles will be built with 4 pieces or an exponentiation thereof for the sake of aesthetics and so that the puzzle pieces above and under a particular puzzle piece can be calculated. 
 
 
 Activities
-
 - MainActivity
 - ScoreDisplay
 - Settings
 
 
 Classes
-
 - PuzzleFitCalculation
 - WinCalculation
 - ScoreCalculation
