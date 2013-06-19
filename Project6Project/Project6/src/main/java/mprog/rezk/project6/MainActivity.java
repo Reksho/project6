@@ -1,10 +1,12 @@
 package mprog.rezk.project6;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ClipData;
 import android.view.DragEvent;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
@@ -32,6 +34,51 @@ public class MainActivity extends Activity {
         findViewById(R.id.bottomright).setOnDragListener(new MyDragListener());
     }
 
+    /* Settings */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /* Inflate the menu; this adds items to the action bar if it is present */
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.new_game:
+                newGame();
+                return true;
+            case R.id.highscores:
+                highscores();
+                return true;
+            case R.id.settings:
+                settings();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /* Called when the user clicks the settings menu button */
+    public void settings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    /* Called when the user clicks the highscores menu button */
+    public void highscores() {
+        Intent intent = new Intent(this, HighscoresActivity.class);
+        startActivity(intent);
+    }
+
+    /* Called when the user clicks the new game menu button */
+    public void newGame() {
+
+    }
+
+
+
+    /* Gameplay met touchgebeuren begint hier */
     private final class MyTouchListener implements OnTouchListener {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
