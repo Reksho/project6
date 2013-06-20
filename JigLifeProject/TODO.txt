@@ -1,0 +1,4 @@
+- Randomize views in containers (dynamically add child of gridlayout)
+- Give each peace a number to recognize when user has won (flag)
+- Implement win algorithm
+- Track amount of moves, time, calculate highscore
