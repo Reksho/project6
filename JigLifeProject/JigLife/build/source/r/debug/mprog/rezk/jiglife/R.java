@@ -27,15 +27,19 @@ public final class R {
         public static final int shape_droptarget=0x7f020006;
     }
     public static final class id {
+        public static final int bottom=0x7f090008;
+        public static final int bottombottom=0x7f09000a;
         public static final int bottomleft=0x7f090004;
         public static final int bottomright=0x7f090006;
-        public static final int highscores=0x7f090009;
+        public static final int highscores=0x7f09000d;
         public static final int myimage1=0x7f090001;
         public static final int myimage2=0x7f090003;
         public static final int myimage3=0x7f090005;
         public static final int myimage4=0x7f090007;
-        public static final int new_game=0x7f090008;
-        public static final int settings=0x7f09000a;
+        public static final int new_game=0x7f09000c;
+        public static final int settings=0x7f09000e;
+        public static final int textView=0x7f090009;
+        public static final int textView2=0x7f09000b;
         public static final int topleft=0x7f090000;
         public static final int topright=0x7f090002;
     }
@@ -48,11 +52,13 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f060000;
-        public static final int amountPieces=0x7f060001;
-        public static final int app_name=0x7f060002;
-        public static final int hello_world=0x7f060003;
-        public static final int highscores=0x7f060004;
-        public static final int new_game=0x7f060005;
+        public static final int amountMoves=0x7f060001;
+        public static final int amountPieces=0x7f060002;
+        public static final int app_name=0x7f060003;
+        public static final int hello_world=0x7f060004;
+        public static final int highscores=0x7f060005;
+        public static final int movesZero=0x7f060006;
+        public static final int new_game=0x7f060007;
     }
     public static final class style {
         /** 

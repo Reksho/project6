@@ -13,10 +13,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <string name="action_settings">Settings</string>
-    <string name="amountPieces">Amount of pieces</string>
+    <string name="amountMoves">Amount of moves:</string>
+    <string name="amountPieces">Amount of pieces:</string>
     <string name="app_name">JigLife</string>
     <string name="hello_world">Hello world!</string>
     <string name="highscores">High scores</string>
+    <string name="movesZero">Amount of moves: 0</string>
     <string name="new_game">New Game</string>
 
     <style name="AppBaseTheme" parent="android:Theme.Light">

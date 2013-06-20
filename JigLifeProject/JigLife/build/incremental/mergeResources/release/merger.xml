@@ -78,9 +78,11 @@
                 </string>
                 <string name="highscores" >High scores
                 </string>
+                <string name="movesZero" >Amount of moves: 0
+                </string>
                 <string name="app_name" >JigLife
                 </string>
-                <string name="amountPieces" >Amount of pieces
+                <string name="amountPieces" >Amount of pieces:
                 </string>
                 <string name="new_game" >New Game
                 </string>
@@ -104,6 +106,9 @@
 36
                     </item>
                 </string-array>
+
+                <string name="amountMoves" >Amount of moves:
+                </string>
             </file>
             <file
                 path="F:\Programmeren\JigLife\JigLifeProject\JigLife\src\main\res\values\styles.xml"

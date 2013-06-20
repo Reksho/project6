@@ -19,7 +19,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.Menu;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends Activity {
+
+    int movesAmount;
+
+    private final int MILLIS_PER_SECOND = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,8 @@ public class MainActivity extends Activity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String amountPieces = sharedPref.getString("listPref", "4");
         int intPieces = Integer.parseInt(amountPieces);
+
+
     }
 
     /* Settings */
@@ -119,15 +128,25 @@ public class MainActivity extends Activity {
                 case DragEvent.ACTION_DROP:
                     // Dropped, reassign View to ViewGroup
                     View view = (View) event.getLocalState(); // view die gedragt wordt
-                    ViewGroup owner = (ViewGroup) view.getParent(); // oude container van de view
-                    owner.removeView(view); // view wordt verwijderd van oude container
                     LinearLayout container = (LinearLayout) v; // nieuwe container
                     View viewOld = container.getChildAt(0);
+                    ViewGroup owner = (ViewGroup) view.getParent(); // oude container van de view
+                    owner.removeView(view); // view wordt verwijderd van oude container
                     container.removeView(viewOld); // view die verplaatst wordt verwijderen van container
                     container.addView(view); // gedragde view wordt toegevoegd aan nieuwe container
-                    owner.addView(viewOld); // oude view plaatsen bij container van gedragde view
-                    view.setVisibility(View.VISIBLE);
-                    break;
+
+                    int childCount = owner.getChildCount();
+                        if (childCount == 0) {
+                        owner.addView(viewOld); // oude view plaatsen bij container van gedragde view
+                        view.setVisibility(View.VISIBLE);
+                        movesAmount += 1;
+                        String text = getString(R.string.amountMoves) + movesAmount;
+                        TextView textView = (TextView) findViewById(R.id.textView);
+                        textView.setText(text);
+                        }
+                    else
+                        view.setVisibility(View.VISIBLE);
+
                 case DragEvent.ACTION_DRAG_ENDED:
                     v.setBackgroundDrawable(normalShape);
                 default:

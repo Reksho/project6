@@ -11,7 +11,11 @@
     </string>
     <string name="highscores">High scores
     </string>
-    <string name="amountPieces">Amount of pieces
+    <string name="amountPieces">Amount of pieces:
+    </string>
+    <string name="movesZero">Amount of moves: 0
+    </string>
+    <string name="amountMoves">Amount of moves:
     </string>
 
     <string-array name="pieces">
