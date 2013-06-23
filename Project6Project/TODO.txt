@@ -1,0 +1,5 @@
+- Randomize views in containers (dynamically add child of gridlayout)
+- Give each piece a number to recognize when user has won (flag)
+- Implement win algorithm
+- Track amount of moves, time, calculate highscore
+- 4, 9, 16, 25, 36
