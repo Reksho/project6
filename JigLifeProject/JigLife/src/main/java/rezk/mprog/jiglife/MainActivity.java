@@ -23,60 +23,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.Menu;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class MainActivity extends Activity {
 
     int movesAmount;
+    int settingsPieces;
     private final int MILLIS_PER_SECOND = 1000;
+    ArrayList<Integer> currentArray;
+    ArrayList<Integer> winArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.standard);
-
-
-        LinearLayout linearMaster = (LinearLayout) findViewById(R.id.linearMaster);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
-
-        int[] myImageIds = new int[]{
-                R.drawable.jig1,
-                R.drawable.jig2,
-                R.drawable.jig3,
-                R.drawable.jig4,
-                R.drawable.jig5,
-                R.drawable.jig6,
-                R.drawable.jig7,
-                R.drawable.jig8,
-                R.drawable.jig9
-        };
-
-        int k = 0;
-
-        for(int i = 0; i < 3; i++) {
-            LinearLayout linearChild = new LinearLayout(this);
-            linearChild.setOrientation(LinearLayout.HORIZONTAL);
-            linearChild.setLayoutParams(params);
-            linearMaster.addView(linearChild);
-
-            for(int j = 0; j < 3; j++) {
-                LinearLayout linear = new LinearLayout(this);
-                linear.setLayoutParams(params2);
-                linear.setBackground(getResources().getDrawable(R.drawable.shape));
-                linear.setOnDragListener(new MyDragListener());
-                linearChild.addView(linear);
-
-                ImageView view = new ImageView(this);
-                view.setLayoutParams(params);
-                view.setId(k);
-                view.setImageDrawable(getResources().getDrawable(myImageIds[k]));
-                view.setOnTouchListener(new MyTouchListener());
-                linear.addView(view);
-
-                k += 1;
-            }
-        }
+        newGame();
     }
 
     /* Settings */
@@ -118,7 +79,64 @@ public class MainActivity extends Activity {
 
     /* Called when the user clicks the new game menu button */
     public void newGame() {
+        setContentView(R.layout.standard);
+        movesAmount = 0;
+        LinearLayout linearMaster = (LinearLayout) findViewById(R.id.linearMaster);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
 
+        int[] myImageIds = new int[]{
+                R.drawable.jig1,
+                R.drawable.jig2,
+                R.drawable.jig3,
+                R.drawable.jig4,
+                R.drawable.jig5,
+                R.drawable.jig6,
+                R.drawable.jig7,
+                R.drawable.jig8,
+                R.drawable.jig9
+        };
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String Pref = sharedPref.getString("listPref", "9");
+        settingsPieces = Integer.parseInt(Pref);
+        int Pieces = (int) Math.sqrt(settingsPieces);
+
+        currentArray = new ArrayList<Integer>();
+        winArray = new ArrayList<Integer>();
+
+        int k = 0;
+        for (int q=0; q < settingsPieces; q++)
+            currentArray.add(q);
+        Collections.shuffle(currentArray);
+
+        for(int i = 0; i < Pieces; i++) {
+            LinearLayout linearChild = new LinearLayout(this);
+            linearChild.setOrientation(LinearLayout.HORIZONTAL);
+            linearChild.setLayoutParams(params);
+            linearMaster.addView(linearChild);
+
+            for(int j = 0; j < Pieces; j++) {
+                LinearLayout linear = new LinearLayout(this);
+                linear.setLayoutParams(params2);
+                linear.setBackground(getResources().getDrawable(R.drawable.shape));
+                linear.setOnDragListener(new MyDragListener());
+                linear.setId(k);
+                linearChild.addView(linear);
+
+                ImageView view = new ImageView(this);
+                view.setLayoutParams(params);
+                view.setId(currentArray.get(k));
+                view.setImageDrawable(getResources().getDrawable(myImageIds[currentArray.get(k)]));
+                view.setOnTouchListener(new MyTouchListener());
+                linear.addView(view);
+
+                winArray.add(k);
+                k += 1;
+            }
+        }
     }
 
 
@@ -158,24 +176,28 @@ public class MainActivity extends Activity {
                 case DragEvent.ACTION_DROP:
                     // Dropped, reassign View to ViewGroup
                     View view = (View) event.getLocalState(); // view die gedragt wordt
+                    int viewNewId = view.getId();
                     LinearLayout container = (LinearLayout) v; // nieuwe container
+                    int containerNewId = container.getId();
                     View viewOld = container.getChildAt(0);
+                    int viewOldId = viewOld.getId();
                     ViewGroup owner = (ViewGroup) view.getParent(); // oude container van de view
+                    int containerOldId = owner.getId();
                     owner.removeView(view); // view wordt verwijderd van oude container
                     container.removeView(viewOld); // view die verplaatst wordt verwijderen van container
                     container.addView(view); // gedragde view wordt toegevoegd aan nieuwe container
 
                     int childCount = owner.getChildCount();
                         if (childCount == 0) {
-                        owner.addView(viewOld); // oude view plaatsen bij container van gedragde view
-                        view.setVisibility(View.VISIBLE);
-                        /*
-                        movesAmount += 1;
-                        String text = getString(R.string.amountMoves) + movesAmount;
-                        TextView textView = (TextView) findViewById(R.id.textView);
-                        textView.setText(text);
-                        checkWin();
-                        */
+                            owner.addView(viewOld); // oude view plaatsen bij container van gedragde view
+                            view.setVisibility(View.VISIBLE);
+                            movesAmount += 1;
+                            String text = getString(R.string.amountMoves) + movesAmount;
+                            TextView textView = (TextView) findViewById(R.id.textView);
+                            textView.setText(text);
+                            currentArray.set(containerNewId, viewNewId);
+                            currentArray.set(containerOldId, viewOldId);
+                            checkWin();
                         }
                     else
                         view.setVisibility(View.VISIBLE);
@@ -190,6 +212,8 @@ public class MainActivity extends Activity {
     }
 
     public void checkWin() {
-
+        if (currentArray.equals(winArray)) {
+            newGame();
+        }
     }
 }
