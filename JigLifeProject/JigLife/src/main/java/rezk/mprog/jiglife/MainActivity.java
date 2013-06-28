@@ -3,7 +3,6 @@ package rezk.mprog.jiglife;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.app.Activity;
@@ -11,7 +10,6 @@ import android.content.ClipData;
 import android.preference.PreferenceManager;
 import android.view.DragEvent;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.view.View.DragShadowBuilder;
 import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,7 +30,6 @@ public class MainActivity extends Activity {
 
     int movesAmount;
     int settingsPieces;
-    private final int MILLIS_PER_SECOND = 1000;
     ArrayList<Integer> currentArray;
     ArrayList<Integer> winArray;
 
@@ -141,7 +137,6 @@ public class MainActivity extends Activity {
             }
         }
     }
-
 
 
     /* Gameplay met touchgebeuren begint hier */
