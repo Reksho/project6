@@ -2,10 +2,10 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="N:\Programmeren\JigLifeProject\JigLife\src\main\assets" />
+        <source path="C:\WINNT\profiles\6331408\AndroidStudioProjects\JigLifeProject\JigLife\src\main\assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="N:\Programmeren\JigLifeProject\JigLife\src\debug\assets" />
+        <source path="C:\WINNT\profiles\6331408\AndroidStudioProjects\JigLifeProject\JigLife\src\debug\assets" />
     </dataSet>
 
 </merger>

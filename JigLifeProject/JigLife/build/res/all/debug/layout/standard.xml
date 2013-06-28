@@ -14,4 +14,11 @@
             android:id="@+id/linearMaster">
     </LinearLayout>
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/movesZero"
+            android:id="@+id/textView" />
+
 </GridLayout>

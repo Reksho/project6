@@ -1,5 +1,6 @@
 package rezk.mprog.jiglife;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.preference.PreferenceManager;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.Menu;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,7 +76,7 @@ public class MainActivity extends Activity {
 
     /* Called when the user clicks the highscores menu button */
     public void highscores() {
-        Intent intent = new Intent(this, HighscoresActivity.class);
+        Intent intent = new Intent(this, Highscores.class);
         startActivity(intent);
     }
 
@@ -213,7 +216,21 @@ public class MainActivity extends Activity {
 
     public void checkWin() {
         if (currentArray.equals(winArray)) {
-            newGame();
+            Context context = getApplicationContext();
+            CharSequence text = getString(R.string.won_text);
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, -100);
+            toast.show();
+
+            int score = (settingsPieces * 10) - movesAmount;
+            if (score < 0)
+                score = 0;
+
+            Intent intent = new Intent(this, Highscores.class);
+            String scoreString = Integer.toString(score);
+            intent.putExtra("score", scoreString);
+            startActivity(intent);
         }
     }
 }

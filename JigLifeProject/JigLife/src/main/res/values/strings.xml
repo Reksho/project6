@@ -17,13 +17,15 @@
     </string>
     <string name="amountMoves">Amount of moves:
     </string>
+    <string name="top">Top 10
+    </string>
+    <string name="won_text">You won!
+    </string>
+
 
     <string-array name="pieces">
         <item>4</item>
         <item>9</item>
-        <item>16</item>
-        <item>25</item>
-        <item>36</item>
     </string-array>
 
 </resources>

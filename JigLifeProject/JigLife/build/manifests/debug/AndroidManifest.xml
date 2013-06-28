@@ -11,7 +11,7 @@
             </intent-filter>
         </activity>
         <activity android:name="rezk.mprog.jiglife.SettingsActivity"/>
-        <activity android:name="rezk.mprog.jiglife.HighscoresActivity"/>
+        <activity android:name="rezk.mprog.jiglife.Highscores"/>
     </application>
 
 </manifest>

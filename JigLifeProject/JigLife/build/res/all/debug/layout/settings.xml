@@ -6,9 +6,9 @@
 
     <ListPreference
             android:title="@string/amountPieces"
-            android:summary="Select how many puzzle pieces you would like in during gameplay"
+            android:summary="Select how many puzzle pieces you would like during gameplay"
             android:key="listPref"
-            android:defaultValue="4"
+            android:defaultValue="9"
             android:entries="@array/pieces"
             android:entryValues="@array/pieces"/>
 
